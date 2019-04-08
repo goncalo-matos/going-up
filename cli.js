@@ -2,8 +2,12 @@
 
 const concurrently = require('concurrently');
 const player = require('play-sound')((opts = {}));
+const path = require('path');
 
-let elevator = player.play('./elevator.mp3', onElevatorFinished);
+let elevator = player.play(
+    path.resolve(__dirname, './elevator.mp3'),
+    onElevatorFinished
+);
 let hasFinished = false;
 
 function onElevatorFinished(err) {
@@ -12,7 +16,10 @@ function onElevatorFinished(err) {
     }
 
     if (!hasFinished) {
-        elevator = player.play('./elevator.mp3', onElevatorFinished);
+        elevator = player.play(
+            path.resolve(__dirname, './elevator.mp3'),
+            onElevatorFinished
+        );
     }
 }
 
@@ -24,7 +31,9 @@ concurrently([commandToExecute], {
 })
     .catch(() => {})
     .then(() => {
-        const ding = player.play('./ding.mp3', { detached: true });
+        const ding = player.play(path.resolve(__dirname, './ding.mp3'), {
+            detached: true
+        });
 
         hasFinished = true;
 
