@@ -15,6 +15,7 @@
     "prettier": "^1.16.4"
   },
   "dependencies": {
+    "concurrently": "^4.1.0",
     "play-sound": "^1.1.3"
   }
 }
