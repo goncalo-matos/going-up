@@ -1,3 +1,5 @@
+Play elevator music while you wait for a command!
+
 # How to
 
 Just `npx going-up <command>`
