@@ -1,6 +1,6 @@
 {
   "name": "going-up",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,10 @@
     "going-up": "./cli.js"
   },
   "author": "Goncalo Matos <goncalomatos3@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Atekon/going-up"
+  },
   "license": "ISC",
   "devDependencies": {
     "eslint": "^5.16.0",
