@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const concurrently = require('concurrently');
 const player = require('play-sound')((opts = {}));
 

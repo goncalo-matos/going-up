@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "elevator": "./cli.js"
+  },
   "author": "Goncalo Matos <goncalo.matos@blip.pt>",
   "license": "ISC",
   "devDependencies": {
