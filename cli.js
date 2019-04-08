@@ -7,7 +7,9 @@ let elevator = player.play('./elevator.mp3', onElevatorFinished);
 let hasFinished = false;
 
 function onElevatorFinished(err) {
-    if (err && !err.killed) throw err;
+    if (err && !err.killed) {
+        throw err;
+    }
 
     if (!hasFinished) {
         elevator = player.play('./elevator.mp3', onElevatorFinished);
