@@ -4,34 +4,28 @@ const concurrently = require('concurrently');
 const player = require('play-sound')((opts = {}));
 const path = require('path');
 
-let elevator = player.play(
-    path.resolve(__dirname, './elevator.mp3'),
-    onElevatorFinished
-);
+let elevator = player.play(path.resolve(__dirname, './bensound-theelevatorbossanova.mp3'));
 let hasFinished = false;
 
-function onElevatorFinished(err) {
-    if (err && !err.killed) {
-        throw err;
-    }
+const elevatorInterval = setInterval(() => {
+    const old = elevator;
 
     if (!hasFinished) {
-        elevator = player.play(
-            path.resolve(__dirname, './elevator.mp3'),
-            onElevatorFinished
-        );
+        elevator = player.play(path.resolve(__dirname, './bensound-theelevatorbossanova.mp3'));
     }
-}
+    setTimeout(() => old.kill(), 1000);
+}, 224000);
 
 const [, , ...actualArguments] = process.argv;
 const commandToExecute = actualArguments.join(' ');
 
-concurrently([commandToExecute], {
-    raw: true
-})
-    .catch(() => {})
-    .then(() => {
-        const ding = player.play(path.resolve(__dirname, './ding.mp3'), {
+(async () => {
+    try {
+        await concurrently([commandToExecute], {
+            raw: true
+        });
+    } finally {
+        const ding = player.play(path.resolve(__dirname, './66952__benboncan__boxing-bell-1.wav'), {
             detached: true
         });
 
@@ -39,4 +33,6 @@ concurrently([commandToExecute], {
 
         ding.unref();
         elevator.kill();
-    });
+        clearInterval(elevatorInterval);
+    }
+})();
